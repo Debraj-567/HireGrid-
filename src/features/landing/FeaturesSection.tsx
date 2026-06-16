@@ -1,73 +1,80 @@
 import { motion } from 'framer-motion';
-import { Sparkles, Target, Zap, Shield, LineChart, Users } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { BrainCircuit, Workflow, Activity, Users, ChevronRight } from 'lucide-react';
 
-const features = [
+const capabilities = [
   {
-    title: 'AI-Powered Matching',
-    description: 'Our proprietary algorithm connects candidates with roles that perfectly fit their skills, experience, and culture preferences.',
-    icon: Sparkles,
+    icon: BrainCircuit,
+    title: "AI Talent Engine",
+    desc: "Our neural graph maps candidate potential against technical requirements, culture fit, and historical success data.",
+    color: "text-primary",
+    bg: "bg-primary/10",
+    border: "border-primary/20"
   },
   {
-    title: 'Precision Targeting',
-    description: 'Recruiters can pinpoint the exact talent they need with advanced filters and automated pre-screening tools.',
-    icon: Target,
+    icon: Workflow,
+    title: "Hiring Automation",
+    desc: "Visual workflow builder. Trigger actions based on candidate stage, test scores, or AI predictions without writing code.",
+    color: "text-secondary",
+    bg: "bg-secondary/10",
+    border: "border-secondary/20"
   },
   {
-    title: 'Lightning Fast Hiring',
-    description: 'Reduce time-to-hire by up to 50% with automated interview scheduling and streamlined communication.',
-    icon: Zap,
+    icon: Activity,
+    title: "Real-Time Insights",
+    desc: "Live analytics on hiring velocity, offer acceptance rates, and pipeline bottlenecks across your entire organization.",
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+    border: "border-green-500/20"
   },
   {
-    title: 'Verified Profiles',
-    description: 'Every candidate profile is thoroughly vetted and verified, ensuring high-quality talent pools for employers.',
-    icon: Shield,
-  },
-  {
-    title: 'Advanced Analytics',
-    description: 'Gain deep insights into your hiring pipeline with comprehensive dashboards and predictive analytics.',
-    icon: LineChart,
-  },
-  {
-    title: 'Collaborative Hiring',
-    description: 'Built-in tools for teams to share feedback, review candidates together, and make better hiring decisions.',
     icon: Users,
-  },
+    title: "Intelligence Map",
+    desc: "Interactive global visualization of talent clusters, helping you decide where to open your next hub or target remote workers.",
+    color: "text-orange-500",
+    bg: "bg-orange-500/10",
+    border: "border-orange-500/20"
+  }
 ];
 
 export function FeaturesSection() {
   return (
-    <section className="py-24 bg-muted/50">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose HireGrid?</h2>
-          <p className="text-muted-foreground text-lg">
-            We provide the most advanced tools for both job seekers and employers, making the hiring process seamless and efficient.
+    <section className="py-32 relative border-t border-white/5 bg-[#08090D]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background to-background"></div>
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-2xl mb-20">
+          <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-4">The Operating System</h2>
+          <h3 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Everything you need to scale elite engineering teams.</h3>
+          <p className="text-xl text-muted-foreground">
+            We stripped away the noise of traditional job boards and built a unified, AI-native infrastructure for the entire hiring lifecycle.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {capabilities.map((cap, i) => (
             <motion.div
-              key={index}
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: i * 0.1 }}
+              className="glass-panel p-8 rounded-2xl group hover:bg-white/[0.02] transition-colors relative overflow-hidden"
             >
-              <Card className="h-full bg-background border-border/50 hover:border-indigo-500/50 transition-colors duration-300">
-                <CardHeader>
-                  <div className="w-12 h-12 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                  </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              {/* Subtle hover gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center border mb-6 ${cap.bg} ${cap.border}`}>
+                <cap.icon className={`w-6 h-6 ${cap.color}`} />
+              </div>
+              
+              <h4 className="text-2xl font-bold text-white mb-3">{cap.title}</h4>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                {cap.desc}
+              </p>
+              
+              <div className="flex items-center text-sm font-medium text-white/50 group-hover:text-white transition-colors cursor-pointer">
+                Explore capability <ChevronRight className="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+              </div>
             </motion.div>
           ))}
         </div>

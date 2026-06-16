@@ -1,68 +1,140 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Search, MapPin } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { ArrowRight, Sparkles, Network, Command, User, Cpu } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export function HeroSection() {
+  const [typingText, setTypingText] = useState('');
+  const fullText = "Find Senior React Engineers in Bangalore";
+  
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypingText(fullText.substring(0, i));
+      i++;
+      if (i > fullText.length) clearInterval(interval);
+    }, 50);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="relative overflow-hidden pt-24 pb-32 lg:pt-36 lg:pb-40">
-      {/* Background Gradients */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-100 via-background to-background dark:from-indigo-950/20 dark:via-background dark:to-background"></div>
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <div className="aurora-bg"></div>
       
-      <div className="container mx-auto px-4 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto space-y-8"
-        >
-          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium bg-background glass mb-4">
-            <span className="flex h-2 w-2 rounded-full bg-indigo-600 mr-2"></span>
-            AI-Powered Recruitment Platform
-          </div>
-
-          <h1 className="text-5xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-indigo-800 to-gray-900 dark:from-white dark:via-indigo-400 dark:to-white pb-2">
-            Connecting Exceptional Talent <br className="hidden lg:block"/> With Exceptional Opportunities
-          </h1>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            HireGrid uses advanced AI matching to pair top-tier candidates with the most innovative companies. Find your next role or hire your next star.
-          </p>
-
+          {/* Left: Copy */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-3xl mx-auto mt-10 p-2 rounded-2xl glass shadow-xl flex flex-col md:flex-row gap-2"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-8"
           >
-            <div className="relative flex-1 flex items-center">
-              <Search className="absolute left-4 w-5 h-5 text-muted-foreground" />
-              <Input 
-                placeholder="Job title, keywords, or company" 
-                className="pl-12 border-0 bg-transparent focus-visible:ring-0 h-14 text-lg"
-              />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white/80">
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span>HireGrid AI Engine v2.0 is live</span>
             </div>
-            <div className="hidden md:block w-px bg-border my-2"></div>
-            <div className="relative flex-1 flex items-center">
-              <MapPin className="absolute left-4 w-5 h-5 text-muted-foreground" />
-              <Input 
-                placeholder="City, state, or 'Remote'" 
-                className="pl-12 border-0 bg-transparent focus-visible:ring-0 h-14 text-lg"
-              />
+            
+            <h1 className="text-5xl lg:text-7xl font-bold tracking-tighter text-white leading-[1.1]">
+              Build Elite Teams <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Using AI.</span>
+            </h1>
+            
+            <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
+              The operating system for modern recruiting. Predict hiring success, automate workflows, and rank talent with military precision.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button className="h-14 px-8 text-base bg-white text-black hover:bg-white/90 rounded-full font-semibold">
+                Start Building Now
+              </Button>
+              <Button variant="outline" className="h-14 px-8 text-base border-white/20 hover:bg-white/5 rounded-full text-white glass-panel group">
+                Watch Demo <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
-            <Button size="lg" className="h-14 px-8 text-lg rounded-xl">
-              Find Jobs
-            </Button>
           </motion.div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-sm text-muted-foreground">
-            <span>Popular:</span>
-            <span className="px-3 py-1 rounded-full border bg-background/50 cursor-pointer hover:bg-accent transition-colors">Frontend Developer</span>
-            <span className="px-3 py-1 rounded-full border bg-background/50 cursor-pointer hover:bg-accent transition-colors">Product Manager</span>
-            <span className="px-3 py-1 rounded-full border bg-background/50 cursor-pointer hover:bg-accent transition-colors">Data Scientist</span>
-            <span className="px-3 py-1 rounded-full border bg-background/50 cursor-pointer hover:bg-accent transition-colors">Remote</span>
-          </div>
-        </motion.div>
+          {/* Right: Interactive UI Mockup */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative lg:h-[600px] w-full"
+          >
+            {/* Main Mockup Window */}
+            <div className="absolute inset-0 glass-panel rounded-2xl border border-white/10 overflow-hidden shadow-2xl flex flex-col">
+              {/* Header */}
+              <div className="h-12 border-b border-white/10 bg-white/5 flex items-center px-4 gap-4">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                  <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                  <div className="w-3 h-3 rounded-full bg-white/20"></div>
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <div className="bg-black/40 border border-white/10 rounded-md px-4 py-1 text-xs text-muted-foreground flex items-center gap-2 w-2/3 max-w-sm">
+                    <Command className="w-3 h-3" />
+                    <span>{typingText}</span>
+                    <span className="w-1 h-3 bg-primary animate-pulse"></span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Body */}
+              <div className="flex-1 p-6 bg-gradient-to-b from-transparent to-black/40 flex flex-col gap-4">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-white font-medium flex items-center gap-2">
+                    <Network className="w-4 h-4 text-secondary" /> AI Talent Match
+                  </h3>
+                  <span className="text-xs text-primary bg-primary/10 px-2 py-1 rounded">12 Candidates Found</span>
+                </div>
+
+                {/* Simulated Results */}
+                {[
+                  { name: "Rahul S.", role: "Sr. React Engineer", score: 98, skills: ["React", "TypeScript", "Node"] },
+                  { name: "Priya M.", role: "Frontend Lead", score: 94, skills: ["React", "System Design", "AWS"] }
+                ].map((c, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.5 + (i * 0.2) }}
+                    className="p-4 rounded-xl border border-white/5 bg-white/5 flex items-center gap-4 group hover:bg-white/10 transition-colors"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+                      <User className="w-5 h-5 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="font-medium text-white">{c.name}</span>
+                        <span className="text-xs font-mono text-green-400 bg-green-400/10 px-2 py-0.5 rounded">{c.score}% Match</span>
+                      </div>
+                      <div className="text-xs text-muted-foreground mb-2">{c.role}</div>
+                      <div className="flex gap-2">
+                        {c.skills.map(s => <span key={s} className="text-[10px] border border-white/10 px-1.5 rounded text-white/60">{s}</span>)}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Floating Elements */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="absolute -right-8 top-16 glass-panel p-4 rounded-xl border border-white/10 flex items-center gap-3 shadow-xl"
+            >
+              <Cpu className="w-8 h-8 text-secondary" />
+              <div>
+                <div className="text-xs text-muted-foreground">Prediction</div>
+                <div className="text-sm font-bold text-white">92% Success Rate</div>
+              </div>
+            </motion.div>
+            
+          </motion.div>
+
+        </div>
       </div>
     </div>
   );
