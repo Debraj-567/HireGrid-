@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Check, User, Briefcase, ShieldCheck } from 'lucide-react';
+import { cn } from '@/utils/utils';
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1);
@@ -160,8 +161,4 @@ export default function RegisterPage() {
       </div>
     </div>
   );
-}
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
 }

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Briefcase, MessageSquare, Star } from 'lucide-react';
+import { cn } from '@/utils/utils';
 
 export function NotificationPanel({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
   const notifications = [
@@ -43,8 +44,4 @@ export function NotificationPanel({ isOpen, onClose }: { isOpen: boolean, onClos
       </motion.div>
     </>
   );
-}
-
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
 }
